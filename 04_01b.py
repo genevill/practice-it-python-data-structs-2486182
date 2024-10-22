@@ -1,7 +1,7 @@
 from collections import namedtuple
+from collections import defaultdict
 
 def main():
-    #add code here
     Food = namedtuple("Food", ["identifier", "name"])
 
     nadias_list = [
@@ -36,6 +36,19 @@ def main():
         Food("BEV003",	"Cafe Latte"),
     ]
 
+    menu = defaultdict(set)
+    #entree, salad, starter, dessert
+    #use a set as the default value
+    for item in nadias_list:
+        if ("ENT" in item.identifier[0:3]):
+            menu["Entree"].add(item)
+        if ("SAL" in item.identifier[0:3]):
+            menu["Salad"].add(item)
+        if ("STA" in item.identifier[0:3]):
+            menu["Starter"].add(item)
+        if ("DES" in item.identifier[0:3]):
+            menu["Dessert"].add(item)
+    print(menu)
     return
 
 if __name__ == "__main__":
